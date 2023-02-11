@@ -39,7 +39,7 @@ const products = [
     description: "Apple is a fruit also called aaple",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGpbEqivK9Y28zvXwyYG3Yr9JoWYoUwfOuxA&usqp=CAU",
-  }
+  },
 ];
 
 function Home() {
@@ -49,9 +49,9 @@ function Home() {
       <Grid
         container
         sx={{
-          maxWidth:"1200px",
-          margin:"auto",
-          marginTop:"100px"
+          maxWidth: "1200px",
+          margin: "auto",
+          marginTop: "100px",
         }}
       >
         {products.map((product) => (

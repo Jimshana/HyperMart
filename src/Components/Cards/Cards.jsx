@@ -7,26 +7,27 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Container, Grid } from "@mui/material";
 import { display } from "@mui/system";
-function Cards(props) {
+function Cards({product}) {
 
-  const product = props.product
+  
+  //Object destructuring
+  // const {product} = props
   console.log(product)
-
+  
   return (
-    <Grid item xs={12} sm={6} md={3}>
-      <Card sx={{ maxWidth: 250 }}>
+    <Grid item xs={12} sm={6} md={3}  sx={{display:"flex",justifyContent:"center"}}>
+      <Card sx={{ width: 250,minHeight:300,marginBottom:"20px" }}>
         <CardMedia
           sx={{ height: 140 }}
-          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8q08WhpczEznhtGN8yMjO4H4QJtfm351g9w&usqp=CAU"
-          title="green iguana"
+          image={product.image}
+          title={product.name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Onion
+            {product.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          {product.description}
           </Typography>
         </CardContent>
         <CardActions>

@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import Cards from "../Cards/Cards";
-import NavBar from "../NavBar/NavBar";
+import Cards from "../Components/Cards/Cards";
+import NavBar from "../Components/NavBar/NavBar";
 
 const products = [
   {
@@ -28,6 +28,18 @@ const products = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGpbEqivK9Y28zvXwyYG3Yr9JoWYoUwfOuxA&usqp=CAU",
   },
+  {
+    name: "Apple",
+    description: "Apple is a fruit also called aaple",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGpbEqivK9Y28zvXwyYG3Yr9JoWYoUwfOuxA&usqp=CAU",
+  },
+  {
+    name: "Apple",
+    description: "Apple is a fruit also called aaple",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGpbEqivK9Y28zvXwyYG3Yr9JoWYoUwfOuxA&usqp=CAU",
+  }
 ];
 
 function Home() {
@@ -37,14 +49,13 @@ function Home() {
       <Grid
         container
         sx={{
-          marginLeft: "50px",
-          marginTop: "100px",
-          display: "flex",
-          direction: "row",
+          maxWidth:"1200px",
+          margin:"auto",
+          marginTop:"100px"
         }}
       >
         {products.map((product) => (
-          <Cards product={product}/>
+          <Cards product={product} />
         ))}
       </Grid>
     </>

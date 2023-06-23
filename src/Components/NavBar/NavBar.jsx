@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import { AppBar, Tabs, Tab, Box } from "@mui/material";
 import { Toolbar } from "@mui/material";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
@@ -8,12 +8,49 @@ import "./NavBar.css";
 import Search from "../Searchbar/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import MobileNavbar from "./MobileNavbar";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { products } from "../../Data/products";
 
-function NavBar() {
+function NavBar({setQuery}) {
+  
+  const navigate = useNavigate();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const handleNavbar = () => {
     setNavbarOpen(!navbarOpen);
   };
+  //   const styles = {
+  //     className:'text-gray-600 block px-2 py-1 hover:underline hover:text-gray-900',
+  //     activeClassName: 'underline text-gray-900'
+
+  // }
+  const links = [
+    {
+      label: "HOME",
+      to: "/products",
+    },
+    {
+      label: "VEGETABLES",
+      to: "/products/category/vegetables",
+    },
+    {
+      label: "FRUITS",
+      to: "/products/category/fruits",
+    },
+    {
+      label: "FISH",
+      to: "/products/category/fish",
+    },
+    {
+      label: "MEAT",
+      to: "/products/category/meat",
+    },
+    {
+      label: "DRINKS",
+      to: "/products/category/drinks",
+    },
+
+  ];
+
   return (
     <AppBar sx={{ background: "#FFFFFF" }}>
       <Toolbar sx={{ maxWidth: 1400, margin: "auto" }}>
@@ -25,26 +62,52 @@ function NavBar() {
           }}
           onClick={handleNavbar}
         />
-        <Box
-          component="img"
-          sx={{
-            height: 40,
-            width: 90,
-            maxHeight: { xs: 40, md: 40 },
-            maxWidth: { xs: 90, md: 50 },
-          }}
-          alt="The house from the offer."
-          src="https://cdn.vectorstock.com/i/preview-lt/71/63/wooden-box-with-food-fresh-vegetables-and-grocery-vector-44607163.webp"
-        />
-        <Tabs sx={{ display: { xs: "none", md: "block" } }}>
-          <Tab label="HOME" />
-          <Tab label="VEGETABLES" />
-          <Tab label="FRUITS" />
-          <Tab label="FISH" />
-          <Tab label="MEAT" />
-          <Tab label="DRINKS" />
+        <Link to="/products">
+          <Box
+            component="img"
+            sx={{
+              height: 40,
+              width: 90,
+              maxHeight: { xs: 40, md: 40 },
+              maxWidth: { xs: 90, md: 50 },
+            }}
+            alt="The house from the offer."
+            src="https://cdn.vectorstock.com/i/preview-lt/71/63/wooden-box-with-food-fresh-vegetables-and-grocery-vector-44607163.webp"
+          />
+        </Link>
+
+        <Tabs sx={{ display: { xs: "none", md: "flex",justifyContent:"space-between"} }}>
+          {links.map((link) => (
+            <NavLink
+              style={{ textDecoration: "none", color: "black" ,margin:15 }}
+              to={link.to}
+            >
+              {link.label}
+            </NavLink>
+          ))}
+          {/* {links.map(link => (<NavLink to={link.to}>{link.label}</NavLink> ))} */}
+
+          {/* <NavLink style={{ textDecoration: "none" ,color:"black"}}> */}
+
+          {/* </NavLink> */}
+
+          {/* <NavLink style={{ textDecoration: "none",color:"black" }} to={`/products/category/vegetables`}>
+            <Tab label="VEGETABLES" />
+          </NavLink>
+          <NavLink style={{ textDecoration: "none",color:"black"  }} to={`/products/category/fruits`}>
+            <Tab label="FRUITS" />
+          </NavLink>
+          <NavLink style={{ textDecoration: "none",color:"black" }} to="/fish">
+            <Tab label="FISH" />
+          </NavLink>
+          <NavLink style={{ textDecoration: "none",color:"black" }} to="/meat">
+            <Tab label="MEAT" />
+          </NavLink>
+          <NavLink style={{ textDecoration: "none",color:"black" }} to="/drinks">
+            <Tab label="DRINKS" />
+          </NavLink> */}
         </Tabs>
-        <Search />
+        <Search setQuery={setQuery}/>
         <PersonOutlineIcon
           sx={{
             color: "#000000",

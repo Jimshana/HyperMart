@@ -8,11 +8,13 @@ import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Link, useNavigate } from "react-router-dom";
 function Cards({ product }) {
   //Object destructuring
   // const {product} = props
+
+  const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
-  console.log(product);
   const handleLike = () => {
     setIsLiked(!isLiked);
   };
@@ -46,7 +48,12 @@ function Cards({ product }) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button variant="outlined" size="small" color="success">
+          <Button
+            onClick={() => navigate(`/products/${product.id}`)}
+            variant="outlined"
+            size="small"
+            color="success"
+          >
             VIEW
           </Button>
           <Button variant="outlined" size="small" color="success">
@@ -71,7 +78,8 @@ function Cards({ product }) {
               <FavoriteIcon sx={{ color: "red" }} onClick={handleLike} />
             ) : (
               <FavoriteBorderIcon sx={{ color: "red" }} onClick={handleLike} />
-            )}
+            )
+            }
           </div>
         </CardActions>
       </Card>
